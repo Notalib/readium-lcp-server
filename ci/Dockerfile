@@ -28,7 +28,7 @@ RUN go build -o $GOPATH/bin/ ./lcpencrypt
 # Runtime image (LCP) #
 #######################
 FROM debian:bookworm-slim AS runtime-lcp
-LABEL org.opencontainers.image.source https://github.com/notalib/readium-lcp-server
+LABEL org.opencontainers.image.source=https://github.com/notalib/readium-lcp-server
 WORKDIR /app
 
 RUN apt update && apt install tzdata -y && apt clean
@@ -71,7 +71,7 @@ CMD ["/app/lcpserver"]
 # Runtime image (LSD) #
 #######################
 FROM runtime-lcp AS runtime-lsd
-LABEL org.opencontainers.image.source https://github.com/notalib/readium-lcp-server
+LABEL org.opencontainers.image.source=https://github.com/notalib/readium-lcp-server
 
 # Mounted config.yaml decides which ports to use. This is the default from config.localhost.yml.
 EXPOSE 8990
